@@ -1,2 +1,2 @@
 # web_shop
-Build a web shop django..
+Build a web shop django.....
