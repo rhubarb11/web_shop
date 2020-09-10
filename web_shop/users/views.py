@@ -3,6 +3,7 @@ from . forms import UserRegisterForm
 
 
 def UserRegisterView(request):
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -10,5 +11,6 @@ def UserRegisterView(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-        form = {'form': form, 'title': 'register'}
-    return render(request, 'users/register.html', form)
+
+    context = {'form': form}
+    return render(request, 'users/register.html', context)
