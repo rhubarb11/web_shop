@@ -16,9 +16,10 @@
       <a href="#">{{ user.get_username }}</a>
       <a href="#">Profile</a>
       <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'password_change' %}">change pwd</a>
     {% else %}
       <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'user-register' %}">Register</a>
+      <a href="{% url 'user_register' %}">Register</a>
     {% endif %}
   </div>
 

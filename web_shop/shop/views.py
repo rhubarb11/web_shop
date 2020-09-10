@@ -3,5 +3,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-
-    return HttpResponse('<h1>**TESTING**</h1>')
+    context = {'test': 'HEJ PÅ DIG'}
+    return render(request, 'shop/index.html', context)
