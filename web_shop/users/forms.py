@@ -17,3 +17,15 @@ class UserRegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             self.add_error('email', 'Email already in use')
         return email
+#-------------------------------------------------------------------------------
+class UserUpdateEmailForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['email']
+#-------------------------------------------------------------------------------
+class UserUpdateUsernameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']

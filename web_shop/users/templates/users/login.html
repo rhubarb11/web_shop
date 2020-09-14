@@ -1,19 +1,19 @@
 {% extends "shop/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<div>
-  <form method="POST"> {% csrf_token %}
-    <fieldset>
-
-      {{ form.as_p }}
-
-    </fieldset>
-    <button type="submit">Login</button>
+  <form class="col-md-5" method="POST"> {% csrf_token %}
+    <legend class="border-bottom mb-4 border-secondary text-secondary">Log in</legend>
+    <fieldset>{{ form|crispy }}</fieldset>
+    <button class="btn btn-outline-info type mb-3" submit">Login</button>
   </form>
-  <div>
-    <a href="{% url 'password_reset' %}"">Forgot your password?</a>
+
+  <div class="col-md-5" style="margin: 0 auto">
+    <ul >
+      <li class="mb-3"><a href="{% url 'password_reset' %}">Forgot Your Password?</a></li>
+      <li><a href="{% url 'register' %}">Need An Account?</a></li>
+    </ul>
   </div>
-</div>
 
 {% endblock %}

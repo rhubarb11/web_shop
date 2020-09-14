@@ -1,0 +1,38 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+<div>
+  <a href="{% url 'password_change' %}">Change Password</a>
+
+  <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">change email</legend>
+        {{ form| crispy }}
+
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+      </div>
+    </form>
+
+  <p> {{ request.user.username }}</p>
+  <a href="#">Update Username</a>
+
+  <p> {{ request.user.email }}</p>
+  <a href="#">Update Email</a>
+  <p> {{ request.user.first_name }}</p>
+  <p> {{ request.user.last_name }}</p>
+  <p> {{ request.user.profile.phone}} </p>
+  <p> {{ request.user.profile.address}} </p>
+  <p> {{ request.user.profile.zip_code}} </p>
+  <p> {{ request.user.profile.city}} </p>
+  <p> {{ request.user.profile.country}} </p>
+
+</div>
+
+
+
+
+
+{% endblock %}
