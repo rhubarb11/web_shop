@@ -9,7 +9,7 @@ urlpatterns = [
 
      # Built in authentication views
      path('login/', auth_views.LoginView.as_view(
-          template_name='users/login.html'), name='login'),
+          template_name='users/login.html', redirect_authenticated_user=True), name='login'),
 
      path('logout/', auth_views.LogoutView.as_view(
           template_name='users/logout.html'), name='logout'),
@@ -33,13 +33,13 @@ urlpatterns = [
           template_name='users/password_reset_complete.html'), name='password_reset_complete'),
      #--------------------------------------------------------------------------------------------
 
-     path('register/', user_views.UserRegisterView, name='register'),
+     path('register/', user_views.userRegisterView, name='register'),
 
-     path('profile/', user_views.ProfileView, name='profile'),
+     path('account/', user_views.userInfoView, name='user'),
 
-     path('email-change/', user_views.EmailChangeView, name='email_change'),
+     path('email-change/', user_views.emailChangeView, name='email_change'),
 
-     path('details-change/', user_views.DetailsChangeView, name='details_change'),
+     path('details-change/', user_views.detailsChangeView, name='details_change'),
 
 
 

@@ -25,9 +25,9 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">Profile</a>
+           aria-haspopup="true" aria-expanded="false">{{ request.user.username}}</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'profile' %}">Account</a>
+          <a class="dropdown-item" href="{% url 'user' %}">Account</a>
           <a class="dropdown-item" href="#">Orders</a>
         </div>
       </li>

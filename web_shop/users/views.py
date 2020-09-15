@@ -3,7 +3,10 @@ from . forms import UserRegisterForm, EmailChangeForm, DetailsChangeForm
 from django.contrib.auth.decorators import login_required
 
 
-def UserRegisterView(request):
+def userRegisterView(request):
+    if request.user.is_authenticated:
+        return redirect('shop-index')
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -17,18 +20,18 @@ def UserRegisterView(request):
 #-------------------------------------------------------------------------------
 
 @login_required
-def ProfileView(request):
-    return render(request, 'users/profile.html')
+def userInfoView(request):
+    return render(request, 'users/user.html')
 #-------------------------------------------------------------------------------
 
 @login_required
-def EmailChangeView(request):
+def emailChangeView(request):
     if request.method == 'POST':
         form = EmailChangeForm(request.POST, instance=request.user)
 
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('user')
     else:
         form = EmailChangeForm(instance=request.user)
 
@@ -36,15 +39,16 @@ def EmailChangeView(request):
     return render(request, 'users/email_change.html', context)
 #-------------------------------------------------------------------------------
 
-def DetailsChangeView(request):
+@login_required
+def detailsChangeView(request):
     if request.method == 'POST':
-        form = DetailsChangeForm(request.POST, instance=request.user.profile)
+        form = DetailsChangeForm(request.POST, instance=request.user.userdetails)
 
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('user')
     else:
-        form = DetailsChangeForm(instance=request.user.profile)
+        form = DetailsChangeForm(instance=request.user.userdetails)
 
     context = {'form':form}
     return render(request, 'users/user_details_change.html', context)
