@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,blank=True)
-    phone = models.CharField(max_length=12)
-    address =  models.CharField(max_length=30)
-    city =  models.CharField(max_length=30)
-    zip_code =  models.CharField(max_length=5)
-    country =  models.CharField(max_length=30)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=12, blank=True)
+    address =  models.CharField(max_length=30, blank=True)
+    city =  models.CharField(max_length=30, blank=True)
+    zip_code =  models.CharField(max_length=5, blank=True)
+    country =  models.CharField(max_length=30, blank=True)

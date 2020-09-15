@@ -5,7 +5,7 @@
 
   <form class="col-md-5" method="POST"> {% csrf_token %}
     <legend class="border-bottom mb-4 border-secondary text-secondary">Log in</legend>
-    <fieldset>{{ form|crispy }}</fieldset>
+    <fieldset>{{ form| crispy }}</fieldset>
     <button class="btn btn-outline-info type mb-3" submit">Login</button>
   </form>
 

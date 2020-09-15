@@ -2,37 +2,73 @@
 
 {% block content %}
 
-<div>
-  <a href="{% url 'password_change' %}">Change Password</a>
+<div class="row col-md-12" style="margin: 0 auto">
+<legend class="border-bottom mb-3 border-secondary text-secondary">{{ request.user.username }}:s profile</legend>
 
-  <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">change email</legend>
-        {{ form| crispy }}
+  <div class="col-md-3 offset-md-9 mb-3 text-right">
+    <a href="{% url 'password_change' %}">Change Password</a><br>
+  </div>
+  <div class="col-md-3 lead">
+    Email
+  </div>
+  <div class="col-md-6 mb-3 lead">
+    {{ request.user.email }}
+  </div>
+  <div class="col-md-3 text-right">
+    <a href="{% url 'email_change' %}">Change Email</a><br>
+  </div>
 
-      </fieldset>
-      <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Update</button>
-      </div>
-    </form>
+  <div class="col-md-3 lead">
+    First Name
+  </div>
+  <div class="col-md-9 mb-3 lead">
+    {{ request.user.first_name }}
+  </div>
+  <div class="col-md-3 mb lead">
+    Last Name
+  </div>
+  <div class="col-md-9 mb-5 lead">
+    {{ request.user.last_name }}
+  </div>
 
-  <p> {{ request.user.username }}</p>
-  <a href="#">Update Username</a>
+  <div class="row col-md-12 border border-dark rounded"style="margin: 0 auto">
 
-  <p> {{ request.user.email }}</p>
-  <a href="#">Update Email</a>
-  <p> {{ request.user.first_name }}</p>
-  <p> {{ request.user.last_name }}</p>
-  <p> {{ request.user.profile.phone}} </p>
-  <p> {{ request.user.profile.address}} </p>
-  <p> {{ request.user.profile.zip_code}} </p>
-  <p> {{ request.user.profile.city}} </p>
-  <p> {{ request.user.profile.country}} </p>
-
-</div>
-
-
-
+    <legend class="mt-2 ml-2 text-secondary" style="font-size:24px">Details</legend>
+    <div class="col-md-3 font-weight-bold">
+      Phone
+    </div>
+    <div class="col-md-9 mb-3">
+      {{ request.user.profile.phone|default:"-----" }}
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      Address
+    </div>
+    <div class="col-md-9 mb-3">
+      {{ request.user.profile.address|default:"-----" }}
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      Zip Code
+    </div>
+    <div class="col-md-9 mb-3">
+      {{ request.user.profile.zip_code|default:"-----"  }}
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      City
+    </div>
+    <div class="col-md-9 mb-3">
+      {{ request.user.profile.city|default:"-----"  }}
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      Country
+    </div>
+    <div class="col-md-6 mb-3">
+      {{ request.user.profile.country|default:"-----"  }}
+    </div>
+    <div class="col-md-3 mb-3 text-right">
+      <a href="{% url 'details_change' %}">Change Details</a><br>
+    </div>
+    </div>
+  </div>
 
 
 {% endblock %}

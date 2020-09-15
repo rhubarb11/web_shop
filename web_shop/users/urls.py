@@ -37,6 +37,11 @@ urlpatterns = [
 
      path('profile/', user_views.ProfileView, name='profile'),
 
+     path('email-change/', user_views.EmailChangeView, name='email_change'),
+
+     path('details-change/', user_views.DetailsChangeView, name='details_change'),
+
+
 
 
 
