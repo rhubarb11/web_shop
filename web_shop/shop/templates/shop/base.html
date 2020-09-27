@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_tag %}
 
 <!doctype html>
 <html lang="en">
@@ -22,7 +23,7 @@
     <div class="container" id="topnav">
     <span id="logo" class="navbar-text">Broken Parts</span>
 
-    <ul class="navbar-nav">
+    <ul class="navbar-nav fontNavbarTop">
     {% if request.user.is_authenticated %}
 
       <li class="nav-item dropdown mr-4">
@@ -46,25 +47,17 @@
         <a class="nav-link" href="{% url 'register' %}">Register</a>
       </li>
     {% endif %}
-      <li class="nav-item mr-4">
-        <a class="nav-link" href="{% url 'cart_detail' %}">Cart</a>
+      <li class="nav-item">
+        <a class="nav-link text-danger" href="{% url 'cart_detail' %}">
+        <i class="fa fa-shopping-cart text-secondary" aria-hidden="true"></i>{{ request.session.cart|length }}</a>
       </li>
+
     </ul>
     </div>
   </nav>
 
-
-
-
-
-
-
-
   <main role="main" class="container-fluid">
     <div class="row">
-
-
-
 
         {% block content %}
         {% endblock %}

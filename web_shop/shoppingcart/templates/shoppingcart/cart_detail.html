@@ -1,55 +1,69 @@
 {% extends "shop/base.html" %}
-{% load cart_tag %}
 
 {% block content %}
 
-<div class="container col-md-6">
+<div class="container col-md-7">
+
   <div class="card shopping-cart">
+
     <div class="card-header bg-dark text-light">
       <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
       Shipping cart
       <a href="{% url 'shop_index' %}" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
       <div class="clearfix"></div>
     </div>
-    <div class="card-body">
+
+    <div class="card-body border-bottom border-secondary">
 
       {% for key,product in request.session.cart.items %}
       <div class="row">
+
         <div class="col-12 col-sm-12 col-md-2 text-center">
-          <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+          <img class="img-responsive" src="{{ product.image }}" alt="prewiew" width="120" height="80">
         </div>
-        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-5">
           <h4 class="product-name"><strong>{{ product.name }}</strong></h4>
         </div>
-        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-          <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-            <h6><strong>{{ product.price }}<span class="text-muted">£</span></strong></h6>
+
+        <div class="col-12 col-sm-12 text-sm-center col-md-5 text-md-right row">
+
+          <div class="col-3 col-sm-3 col-md-4 text-md-left" style="padding-top: 5px;">
+            <h6><strong>{{ product.price }}<span class="text-muted">€</span></strong></h6>
           </div>
-          <div class="col-4 col-sm-4 col-md-4">
-            <div class="quantity">
-              <input type="number" step="1" max="99" min="1" value="{{ product.quantity }}"
-                     title="quantity" class="qty" size="4">
-            </div>
+
+          <div class="col-6 col-sm-6 col-md-6">
+            <form action="{% url 'cart_update_item' product.product_id %}" class="" method="GET">
+
+              <div class="quantity" style="background-color:black;">
+                <input name="updated_quantity" type="number" step="1" max="99" min="1" value="{{ product.quantity }}" title="quantity" class="qty" size="4">
+                <input name="current_quantity" type="number" value="{{ product.quantity }}" hidden=True>
+              </div>
+              <div class="">
+                <button class="btn btn-outline-success type mb-3" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+              </div>
+            </form>
           </div>
+
           <div class="col-2 col-sm-2 col-md-2 text-right">
-            <button type="button" class="btn btn-outline-danger btn-xs">
+            <button type="button" class="btn btn-outline-danger btn-xs" onclick="location.href='{% url 'cart_clear_item' product.product_id %}'">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </div>
+
         </div>
       </div>
       <hr>
       {% endfor %}
-      <!-- END PRODUCT -->
-      <!-- PRODUCT -->
 
-      <!-- END PRODUCT -->
       <div class="pull-right">
-        <a href="" class="btn btn-outline-info pull-right">
-          Update shopping cart
+        <a href="{% url 'cart_clear' %}" class="btn btn-outline-danger pull-right">
+          Clear Cart
         </a>
       </div>
+
     </div>
+
     <div class="card-footer">
       <div class="pull-right" style="margin: 10px">
         <a href="" class="btn btn-success pull-right">Checkout</a>
@@ -58,6 +72,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 

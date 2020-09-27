@@ -23,6 +23,10 @@
   background-color: #B8B8B8;
 }
 
+.fontNavbarTop li{
+font-size: 22px;
+}
+
 ul {
   padding: 0;
   list-style-type: none;
