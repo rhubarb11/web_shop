@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'users.apps.UsersConfig',
+    'shoppingcart.apps.ShoppingcartConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'cart'
 ]
 
 
@@ -69,10 +71,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.get_categories',
+                'cart.context_processor.cart_total_amount',
             ],
         },
     },
 ]
+
+CART_SESSION_ID = 'cart'
 
 WSGI_APPLICATION = 'web_shop.wsgi.application'
 
@@ -131,8 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = 'shop-index'
+LOGIN_REDIRECT_URL = 'shop_index'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

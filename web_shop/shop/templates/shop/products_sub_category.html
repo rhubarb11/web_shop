@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+{% include "shop/side_bar_left.html" %}
+
+<div class="container col-9 mt-2 mx-auto">
+  <div class="row">
+
+    {% for p in products %}
+    <div class="col-md-3 border mx-auto ml-2" id="content-indexpage">
+      <div class="mb-2">
+        <img class="img-responsive mx-auto d-block" src="{{ p.image.url }}">
+      </div>
+      <p>{{ p.name }}</p>
+      <p>{{ p.description }}</p>
+      <p>{{ p.price }}</p>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+{% include "shop/side_bar_left.html" %}
+
+<div class="container col-9 mt-5 mx-auto">
+  <div class="row">
+
+    <div class="col-md-6">
+        <img class="img-fluid w-100" src="{{ product.image.url }}">
+    </div>
+
+      <div class="col-md-6">
+        <h5 class="text-bold">{{ product.name }}</h5>
+        <p>{{ product.price }}</p>
+        <p>{{ product.description }}</p>
+        <a href="{% url 'cart_add' product.id %}">Add to cart</a>
+
+      </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

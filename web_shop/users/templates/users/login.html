@@ -3,14 +3,14 @@
 
 {% block content %}
 
-  <form class="col-md-5" method="POST"> {% csrf_token %}
+  <form class="col-md-4" method="POST"> {% csrf_token %}
     <legend class="border-bottom mb-4 border-secondary text-secondary">Log in</legend>
     <fieldset>{{ form| crispy }}</fieldset>
     <button class="btn btn-outline-info type mb-3" submit">Login</button>
   </form>
 
-  <div class="col-md-5" style="margin: 0 auto">
-    <ul >
+  <div class="col-md-4" style="margin: 0 auto">
+    <ul>
       <li class="mb-3"><a href="{% url 'password_reset' %}">Forgot Your Password?</a></li>
       <li><a href="{% url 'register' %}">Need An Account?</a></li>
     </ul>

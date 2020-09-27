@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <form class="col-md-5" method="POST">{% csrf_token %}
+    <form class="col-md-4" method="POST">{% csrf_token %}
       <legend class="border-bottom mb-4 border-secondary text-secondary">Change Email</legend>
       <fieldset>
         {{ form| crispy }}

@@ -3,13 +3,13 @@
 
 {% block content %}
 
-  <form class="col-md-5" method="POST"> {% csrf_token %}
+  <form class="col-md-4" method="POST"> {% csrf_token %}
     <legend class="border-bottom mb-4 border-secondary text-secondary">Register</legend>
     <fieldset>{{ form|crispy }}</fieldset>
     <button class="btn btn-outline-info type mb-3" submit">Register</button>
   </form>
 
-  <div class="col-md-5 border-bottom border-secondary pb-3" style="margin: 0 auto">
+  <div class="col-md-4 border-bottom border-secondary pb-3" style="margin: 0 auto">
     <ul >
       <li class="mb-3"><a href="{% url 'login' %}">Already Have An Account?</a></li>
     </ul>

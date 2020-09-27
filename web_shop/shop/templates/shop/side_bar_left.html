@@ -1,0 +1,29 @@
+<div id="wrapper">
+  <div id="sidebar-wrapper" class="bg-dark">
+    <aside id="sidebar">
+
+      <ul id="sidemenu" class="sidebar-nav">
+
+        {% for category in categories %}
+        <li>
+          <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-{{ forloop.counter }}">
+            <span class="sidebar-icon"><i class="fa fa-anchor"></i></span>
+            <span class="sidebar-title text-uppercase">{{category.name}}</span>
+            <b class="caret"></b>
+          </a>
+
+          <ul id="submenu-{{ forloop.counter }}" class="panel-collapse collapse panel-switch" role="menu">
+            <li>
+              {% for sub_category in category.sub_categories %}
+              <a href="{% url 'shop_sub_category' sub_category.slug %}"><i class="fa fa-caret-right"></i>{{ sub_category.name }}</a>
+              {% endfor %}
+            </li>
+          </ul>
+        </li>
+        {% endfor %}
+
+      </ul>
+
+    </aside>
+  </div>
+</div>
