@@ -17,7 +17,7 @@
 
       <div class="col-md-6">
         <h5 class="text-bold">{{ product.name }}</h5>
-        <p>{{ product.price }}</p>
+        <p>€{{ product.price }}</p>
         <p>{{ product.description }}</p>
         <a href="{% url 'cart_add_item' product.id %}">Add to cart</a>
 

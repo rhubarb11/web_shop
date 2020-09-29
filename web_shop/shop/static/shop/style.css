@@ -16,6 +16,15 @@
   height: 100px;
 }
 
+#testa{
+
+    background: #7fffd4;
+    background: -webkit-linear-gradient(to right, #7fffd4, #f5f5dc);
+    background: linear-gradient(to right, #7fffd4, #f5f5dc);
+
+
+}
+
 .border-3 {
     border-width:3px !important;
 }
@@ -25,7 +34,7 @@
 }
 
 .fontNavbarTop li{
-font-size: 22px;
+  font-size: 22px;
 }
 
 ul {
@@ -47,6 +56,12 @@ body {
   background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
   background: linear-gradient(to right, #00b09b, #96c93d);
   min-height: 100vh;
+  margin-top: 84px;
+}
+
+footer{
+  z-index: 1000;
+  position: relative;
 }
 
 .text-gray {
@@ -55,11 +70,13 @@ body {
 
 /* sidebar-left --------------------------------------------------------------*/
 #wrapper {
+    z-index: 1;
     padding-left: 0;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
+
 }
 
 @media (min-width: 992px) {
@@ -75,15 +92,16 @@ body {
 }
 
 #sidebar-wrapper {
-    border-right: 1px solid #e7e7e7;
+    border-right: 1px solid black;
+
 }
 
 #sidebar-wrapper {
-    z-index: 1000;
+    z-index: 1;
     position: fixed;
     left: 225px;
     width: 0;
-    height: 100%;
+    height: 100% ;
     margin-left: -225px;
     overflow-y: auto;
     background: #f8f8f8;
@@ -91,6 +109,7 @@ body {
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
+
 }
 
 #sidebar-wrapper .sidebar-nav {
@@ -127,7 +146,7 @@ body {
 }
 
 #sidebar-wrapper .sidebar-nav li a .caret {
-  position: absolute;
+  position: fixed;
   right: 23px;
   top: auto;
   margin-top: 20px;
@@ -159,7 +178,7 @@ body {
         position: fixed;
         left: 45px;
         margin-top: -45px;
-        z-index: 1000;
+        z-index: 1;
         width: 200px;
         height: 0;
     }

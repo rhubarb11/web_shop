@@ -16,7 +16,7 @@
     <title>Hello</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   {% block navbar %}
   {% endblock %}
@@ -31,7 +31,7 @@
   </div>
   {% endif %}
 
-  <main role="main" class="container-fluid">
+  <main role="main" class="container-fluid mb-4">
     <div class="row">
 
         {% block content %}
@@ -44,14 +44,70 @@
 
 
 
+<footer class="mt-auto page-footer font-small blue bg-dark border-top border-3 border-secondary pt-4 mt-4 text-secondary">
+  <div class="container col-9 mt-2 text-center text-md-left mx-auto">
+
+    <div class="row">
+
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="mr-5 ml-5">FOOTER CONTENT</h5>
+        <p class="mr-5 ml-5">{% lorem 20 w random %}</p>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5>LINKS</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#">Link 1</a>
+          </li>
+          <li>
+            <a href="#">Link 2</a>
+          </li>
+          <li>
+            <a href="#">Link 3</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+
+      <h5>CONTACT</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p><i class="fa fa-home mr-3"></i>Lugna gatan 3 22100 Finland</p>
+          </li>
+          <li>
+            <p><i class="fa fa-envelope mr-3"></i>bp@hotmail.com</p>
+          </li>
+          <li>
+            <i class="fa fa-phone mr-3"></i>+358 40 1234567</p>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>
+
+</footer>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
 
   </body>
 
