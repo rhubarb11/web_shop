@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from . forms import UserRegisterForm, EmailChangeForm, DetailsChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def userRegisterView(request):
@@ -11,6 +12,7 @@ def userRegisterView(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Registration completed. You can now sign in')
             return redirect('login')
     else:
         form = UserRegisterForm()

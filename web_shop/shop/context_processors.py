@@ -1,7 +1,6 @@
 from . models import Category, SubCategory
 
 
-
 def get_categories(request):
     categories = Category.objects.all()
 
@@ -9,4 +8,4 @@ def get_categories(request):
         c.sub_categories = SubCategory.objects.filter(category__name=c.name)
 
     context = {'categories': categories}
-    return context;
+    return context

@@ -36,7 +36,8 @@
             <form action="{% url 'cart_update_item' product.product_id %}" class="" method="GET">
 
               <div class="quantity" style="background-color:black;">
-                <input name="updated_quantity" type="number" step="1" max="99" min="1" value="{{ product.quantity }}" title="quantity" class="qty" size="4">
+                <input name="updated_quantity" type="number" step="1" max="99" min="1"
+                       value="{{ product.quantity }}" title="quantity" class="qty" size="4">
                 <input name="current_quantity" type="number" value="{{ product.quantity }}" hidden=True>
               </div>
               <div class="">

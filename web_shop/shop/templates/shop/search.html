@@ -11,13 +11,13 @@
 <div class="container">
 
   <div class="text-center text-black mb-5 mt-3">
-    <h3>{{ sub_category }}</h3>
+    <h3>Search result for "{{ search_query }}"</h3>
   </div>
 
   <div class="row">
 
     <div class="col-lg-8 mx-auto form-inline pl-5 pr-2">
-      <p class="lead mb-0">{{ products|length }} products</p>
+      <p class="lead mb-0">{{ products|length }} results found</p>
 
       {% if products|length > 1 %}
       <ul class="navbar-nav ml-auto mr-3">
@@ -29,6 +29,7 @@
 
             <form id="columnarForm" action="" enctype="multipart/form-data" method="GET">
 
+            <input type="hidden" name="search" value="{{ search_query }}">
             <button class="dropdown-item" type="submit" value='price' name="sort" >Price low->high</button>
             <button class="dropdown-item" type="submit" value='-price' name="sort"">Price high->low</button>
             <button class="dropdown-item" type="submit" value='-date_created' name="sort">Newest</button>
@@ -38,9 +39,10 @@
         </li>
 
         </ul>
-        {% endif %}
+      {% endif %}
       </div>
     </div>
+
 
   <div class="row">
 
@@ -48,7 +50,7 @@
 
       <ul class="list-group">
         {% for product in products %}
-        <li class="list-group-item border border-secondary mb-3">
+        <li class="list-group-item mb-3">
 
           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
 

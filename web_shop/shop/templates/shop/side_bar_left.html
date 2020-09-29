@@ -15,7 +15,8 @@
           <ul id="submenu-{{ forloop.counter }}" class="panel-collapse collapse panel-switch" role="menu">
             <li>
               {% for sub_category in category.sub_categories %}
-              <a href="{% url 'shop_sub_category' sub_category.slug %}"><i class="fa fa-caret-right"></i>{{ sub_category.name }}</a>
+              <a href="{% url 'shop_sub_category' sub_category.slug %}">
+                <i class="fa fa-caret-right"></i>{{ sub_category.name }}</a>
               {% endfor %}
             </li>
           </ul>

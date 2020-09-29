@@ -7,7 +7,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -19,42 +18,18 @@
 
 <body>
 
-  <nav class="navbar navbar-fixed-top navbar-expand-md navbar-dark bg-dark border-bottom border-3 border-success">
-    <div class="container" id="topnav">
-    <span id="logo" class="navbar-text">Broken Parts</span>
+  {% block navbar %}
+  {% endblock %}
 
-    <ul class="navbar-nav fontNavbarTop">
-    {% if request.user.is_authenticated %}
-
-      <li class="nav-item dropdown mr-4">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">{{ request.user.username}}</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'user' %}">Account</a>
-          <a class="dropdown-item" href="#">Orders</a>
-        </div>
-      </li>
-
-      <li class="nav-item mr-4">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </li>
-
-    {% else %}
-      <li class="nav-item mr-4">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-      </li>
-      <li class="nav-item mr-4">
-        <a class="nav-link" href="{% url 'register' %}">Register</a>
-      </li>
-    {% endif %}
-      <li class="nav-item">
-        <a class="nav-link text-danger" href="{% url 'cart_detail' %}">
-        <i class="fa fa-shopping-cart text-secondary" aria-hidden="true"></i>{{ request.session.cart|length }}</a>
-      </li>
-
-    </ul>
+  {% if messages %}
+    <div class="span12 d-flex justify-content-center">
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message|safe }}
     </div>
-  </nav>
+  {% endfor %}
+  </div>
+  {% endif %}
 
   <main role="main" class="container-fluid">
     <div class="row">

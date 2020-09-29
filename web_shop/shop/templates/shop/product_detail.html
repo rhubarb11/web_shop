@@ -1,5 +1,9 @@
 {% extends "shop/base.html" %}
 
+{% block navbar %}
+  {% include "shop/navbar_top.html" %}
+{% endblock %}
+
 {% block content %}
 
 {% include "shop/side_bar_left.html" %}
@@ -15,7 +19,7 @@
         <h5 class="text-bold">{{ product.name }}</h5>
         <p>{{ product.price }}</p>
         <p>{{ product.description }}</p>
-        <a href="{% url 'cart_add' product.id %}">Add to cart</a>
+        <a href="{% url 'cart_add_item' product.id %}">Add to cart</a>
 
       </div>
 
