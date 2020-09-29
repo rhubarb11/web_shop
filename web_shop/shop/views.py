@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 from . models import Category, SubCategory, Product
 
 
+
 def index(request):
     products = Product.objects.all()
     context = {'products': products }
