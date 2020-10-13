@@ -9,7 +9,7 @@
     <div class="card-header bg-dark text-light">
       <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
       Shipping cart
-      <a href="{% url 'shop_index' %}" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
+      <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
       <div class="clearfix"></div>
     </div>
 

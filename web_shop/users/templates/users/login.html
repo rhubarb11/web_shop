@@ -1,19 +1,32 @@
 {% extends "shop/base.html" %}
 {% load crispy_forms_tags %}
 
+
+{% block navbar %}
+  {% include "users/navbar_top_user.html" %}
+{% endblock %}
+
 {% block content %}
 
-  <form class="col-md-4" method="POST"> {% csrf_token %}
-    <legend class="border-bottom mb-4 border-secondary text-secondary">Log in</legend>
-    <fieldset>{{ form| crispy }}</fieldset>
-    <button class="btn btn-outline-info type mb-3" submit">Login</button>
-  </form>
+<div class="d-flex justify-content-center container align-items-center mt-5">
 
-  <div class="col-md-4" style="margin: 0 auto">
+<form class="col-md-5 mx-auto" method="POST"> {% csrf_token %}
+  <legend class="border-bottom mb-4 border-secondary text-secondary">Log in</legend>
+    <fieldset class="">
+      {{ form| crispy }}
+    </fieldset>
+  <button class="btn btn-outline-info type mb-3" type="submit">Login</button>
+</form>
+
+</div>
+
+<div class="d-flex justify-content-center container align-items-center mt-2">
+  <div class="col-md-5 mx-auto border-bottom border-secondary pb-3">
     <ul>
       <li class="mb-3"><a href="{% url 'password_reset' %}">Forgot Your Password?</a></li>
       <li><a href="{% url 'register' %}">Need An Account?</a></li>
-    </ul>
-  </div>
+  </ul>
+</div>
+</div>
 
-{% endblock %}
+{% endblock content %}

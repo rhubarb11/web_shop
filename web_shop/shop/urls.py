@@ -9,7 +9,6 @@ urlpatterns = [
     path('product/<str:slug>/', ProductDetailView.as_view(), name='shop_product_detail'),
     path('search/', SearchListView.as_view(), name='shop_search'),
 
-
 ]
 
 from django.conf import settings

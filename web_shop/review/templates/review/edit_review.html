@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+
+<div class="col-md-12 border-bottom border-3 pb-3 mx-auto" id="write_review_div" style="display: none;">
+
+  <form class="col-md-8" action="{% url 'edit_review' review_id %}" method="POST"> {% csrf_token %}
+
+    <legend class="border-bottom mb-4 border-secondary text-dark mt-3">Rate this product</legend>
+      <fieldset>
+        {{ form| crispy }}
+      </fieldset>
+    <button class="btn btn-dark mb-3" submit">EDIT REVIEV</button>
+  </form>
+
+</div>

@@ -17,12 +17,20 @@
 }
 
 #testa{
+  background: #66ffc2;
+  background: -webkit-linear-gradient(to right, #66ffc2, #b3ffe0);
+  background: linear-gradient(to right, #66ffc2, #b3ffe0);
+}
 
-    background: #7fffd4;
-    background: -webkit-linear-gradient(to right, #7fffd4, #f5f5dc);
-    background: linear-gradient(to right, #7fffd4, #f5f5dc);
+#alert_container {
+  position: absolute;
+  width: 100%;
+}
 
-
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .border-3 {
@@ -52,9 +60,9 @@ legend {
 }
 
 body {
-  background: #00b09b;
-  background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
-  background: linear-gradient(to right, #00b09b, #96c93d);
+  background: #ccccb3;
+  background: -webkit-linear-gradient(to right, #ccccb3, #f5f5f0);
+  background: linear-gradient(to right, #ccccb3, #f5f5f0);
   min-height: 100vh;
   margin-top: 84px;
 }

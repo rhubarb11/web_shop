@@ -1,0 +1,38 @@
+<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-3 border-secondary">
+
+  <a href="{% url 'shop_index' %}"><span id="logo" class="navbar-text">Broken Parts</span></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+    <ul class="navbar-nav ml-auto fontNavbarTop" style="margin-right: 100px;">
+      {% if request.user.is_authenticated %}
+
+      <li class="nav-item dropdown active mr-5">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ request.user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'user' %}">Account</a>
+          <a class="dropdown-item" href="#">Orders</a>
+          <div class="dropdown-divider" style="border-color:black;"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </li>
+
+      {% endif %}
+
+      <li class="nav-item active mr-5">
+        <a class="nav-link text-danger" href="{% url 'cart_detail' %}">
+          <i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+          {% if request.session.cart|length > 0 %}
+            {{ request.session.cart|length }}
+          {% endif %}
+          <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

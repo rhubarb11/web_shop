@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from . models import Category, SubCategory, Product
-
+from review.models import CustomerReview
+from review.forms import CustomerReviewForm
+from django.db.models import Avg
 
 
 def index(request):
@@ -33,6 +35,22 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'shop/product_detail.html'
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            customer_review = context['product'].reviews.all().get(user=self.request.user)
+            context['form'] = CustomerReviewForm(instance=customer_review)
+            context['reviewed'] = True
+            context['review_id'] = customer_review.id
+
+        except CustomerReview.DoesNotExist:
+            context['form'] = CustomerReviewForm()
+            context['reviewed'] = False
+
+        context['avg_rating'] = context['product'].reviews.all().aggregate(Avg('rating'))
+        return context
 #-------------------------------------------------------------------------------
 
 class SearchListView(ListView):

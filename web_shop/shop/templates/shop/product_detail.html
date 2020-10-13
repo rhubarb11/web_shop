@@ -8,22 +8,86 @@
 
 {% include "shop/side_bar_left.html" %}
 
-<div class="container col-9 mt-5 mx-auto">
+<div class="container col-8 mx-auto pb-3 mt-5">
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-12">
+      {{ product }}
+    </div>
+
+    <div class="col-md-6 border-bottom border-3 pb-3">
         <img class="img-fluid w-100" src="{{ product.image.url }}">
     </div>
 
-      <div class="col-md-6">
-        <h5 class="text-bold">{{ product.name }}</h5>
-        <p>€{{ product.price }}</p>
-        <p>{{ product.description }}</p>
-        <a href="{% url 'cart_add_item' product.id %}">Add to cart</a>
+    <div class="col-md-6 border-bottom border-3 pb-3">
 
-      </div>
+        {% for i in "12345" %}
+          {% if forloop.counter <= avg_rating.rating__avg %}
+
+            <i class="fa fa-star" style="color:yellow; margin-left:3px;"></i>
+          {% else %}
+            <i class="fa fa-star" style="color:black; margin-left:3px;"></i>
+
+          {% endif %}
+        {% endfor %}
+
+        <br>
+        <a class="" href="javascript:reviews()">customer reviews</a><br>
+
+        {% if request.user.is_authenticated %}
+
+          {% if reviewed %}
+            <a class="" href="javascript:writeReview()">edit your review</a>
+          {% else %}
+            <a class="" href="javascript:writeReview()">write a review</a>
+          {% endif %}
+
+        {% endif %}
+
+        <h5 class="mt-3">{{ product.name }}</h5>
+        <p>€{{ product.price }}</p>
+        <p class="">{{ product.description }}</p>
+
+        <div class="bottom-div mb-3 ml-3">
+            <h1><a href="{% url 'cart_add_item' product.id %}">Add to cart</a></h1>
+        </div>
 
     </div>
+
+    <div class="col-md-8 border-bottom border-3 pb-3 mx-auto mt-4" id="reviews_div" style="display: none;">
+
+
+      {% for review in product.reviews.all %}
+      <div class="border-bottom border-3 text-center">
+
+        <h5>{{ review.author }}</h5>
+
+        {% for i in "12345" %}
+          {% if forloop.counter <= review.rating %}
+            <i class="fa fa-star" style="color:yellow; margin-left:4px;"></i>
+          {% else %}
+            <i class="fa fa-star" style="color:black; margin-left:4px;"></i>
+          {% endif %}
+        {% endfor %}
+
+        <p>{{ review.comment }}</p>
+        <p>{{ review.date_added }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+
+    {% if request.user.is_authenticated %}
+
+      {% if reviewed %}
+        {% include "review/edit_review.html" %}
+      {% else %}
+          {% include "review/add_review.html" %}
+      {% endif %}
+
+    {% endif %}
+
+</div>
 </div>
 
 

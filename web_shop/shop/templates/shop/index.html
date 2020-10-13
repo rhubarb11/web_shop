@@ -8,22 +8,29 @@
 
 {% include "shop/side_bar_left.html" %}
 
-<div class="container col-9 mt-2 mx-auto">
+<div class="container col-9 mt-5 mx-auto">
   <div class="row">
 
     {% for product in products %}
     <div class="col-md-4 mt-4">
+
       <div class="card" id="testa">
+
         <a href="{% url 'shop_product_detail' product.slug %}">
         <img class="card-img-top mx-auto" src="{{ product.image.url }}">
         </a>
+
         <div class="card-block">
+
           <h4 class="card-title ml-2">{{ product.name }}</h4>
           <p class="card-text ml-2 mb-2">Price: {{ product.price }}</p>
 
         </div>
+
       </div>
+
     </div>
+
     {% endfor %}
 
   </div>
