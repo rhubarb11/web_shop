@@ -267,3 +267,19 @@ input[type=number]::-webkit-inner-spin-button {
 .shopping-cart {
     margin-top: 20px;
 }
+
+
+/* rating ---------------------------------------------------------------------*/
+.stars-rating {
+	position: relative;
+  display: inline-block;
+}
+
+.stars-rating .stars-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 0%;
+    white-space: nowrap;
+}

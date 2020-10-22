@@ -9,30 +9,23 @@
 {% include "shop/side_bar_left.html" %}
 
 <div class="container col-8 mx-auto pb-3 mt-5">
+
   <div class="row">
 
     <div class="col-12">
-      {{ product }}
+      {{ product.subcategory }}
     </div>
 
-    <div class="col-md-6 border-bottom border-3 pb-3">
+    <div class="col-md-6 border-bottom border-secondary border-3 pb-3">
         <img class="img-fluid w-100" src="{{ product.image.url }}">
     </div>
 
-    <div class="col-md-6 border-bottom border-3 pb-3">
+    <div class="col-md-6 border-bottom border-secondary border-3 pb-3">
 
-        {% for i in "12345" %}
-          {% if forloop.counter <= avg_rating.rating__avg %}
-
-            <i class="fa fa-star" style="color:yellow; margin-left:3px;"></i>
-          {% else %}
-            <i class="fa fa-star" style="color:black; margin-left:3px;"></i>
-
-          {% endif %}
-        {% endfor %}
-
+        {% include "review/star_rating.html" %}
         <br>
-        <a class="" href="javascript:reviews()">customer reviews</a><br>
+        <a class="" href="javascript:reviews()">customer reviews ({{ product.reviews.all|length }})</a>
+        <br>
 
         {% if request.user.is_authenticated %}
 
@@ -54,25 +47,39 @@
 
     </div>
 
-    <div class="col-md-8 border-bottom border-3 pb-3 mx-auto mt-4" id="reviews_div" style="display: none;">
-
+    <div class="col-md-8 pb-3 mx-auto mt-4" id="reviews_div" style="display: none;">
 
       {% for review in product.reviews.all %}
-      <div class="border-bottom border-3 text-center">
+      <div class="border-bottom border-secondary text-center mt-3">
 
-        <h5>{{ review.author }}</h5>
+        <div class="row">
 
-        {% for i in "12345" %}
-          {% if forloop.counter <= review.rating %}
-            <i class="fa fa-star" style="color:yellow; margin-left:4px;"></i>
-          {% else %}
-            <i class="fa fa-star" style="color:black; margin-left:4px;"></i>
-          {% endif %}
-        {% endfor %}
+          <div class="col-md-4 mx-auto">
+            <p class="text-muted">{{ review.author }}</p>
+          </div>
 
-        <p>{{ review.comment }}</p>
-        <p>{{ review.date_added }}</p>
+          <div class="col-md-4 mx-auto">
+            {% for i in "12345" %}
+              {% if forloop.counter <= review.rating %}
+                <i class="fa fa-star" style="color:yellow; margin-left:4px;"></i>
+              {% else %}
+                <i class="fa fa-star" style="color:black; margin-left:4px;"></i>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="col-md-4 mx-auto">
+            {% if review.date_updated %}
+              <p class="text-muted">(edited): {{ review.date_updated|date:"M d, Y" }}</p>
+            {% else %}
+              <p class="text-muted">{{ review.date_added }}</p>
+            {% endif %}
+          </div>
         </div>
+
+        <p class="lead">{{ review.comment }}</p>
+
+      </div>
       {% endfor %}
 
     </div>
@@ -82,12 +89,13 @@
       {% if reviewed %}
         {% include "review/edit_review.html" %}
       {% else %}
-          {% include "review/add_review.html" %}
+        {% include "review/add_review.html" %}
       {% endif %}
 
     {% endif %}
 
-</div>
+  </div>
+
 </div>
 
 

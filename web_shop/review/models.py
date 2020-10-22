@@ -9,9 +9,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class CustomerReview(models.Model):
     product = models.ForeignKey(Product, related_name="reviews", on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    author =  models.CharField(max_length=20)
+    author =  models.CharField(max_length=16)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    comment = models.TextField(max_length=200)
+    comment = models.TextField(max_length=400)
     date_added = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(blank=True, null=True)
 

@@ -39,15 +39,16 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        try:
-            customer_review = context['product'].reviews.all().get(user=self.request.user)
-            context['form'] = CustomerReviewForm(instance=customer_review)
-            context['reviewed'] = True
-            context['review_id'] = customer_review.id
+        if self.request.user.is_authenticated:
+            try:
+                customer_review = context['product'].reviews.all().get(user=self.request.user)
+                context['form'] = CustomerReviewForm(instance=customer_review)
+                context['reviewed'] = True
+                context['review_id'] = customer_review.id
 
-        except CustomerReview.DoesNotExist:
-            context['form'] = CustomerReviewForm()
-            context['reviewed'] = False
+            except CustomerReview.DoesNotExist:
+                context['form'] = CustomerReviewForm()
+                context['reviewed'] = False
 
         context['avg_rating'] = context['product'].reviews.all().aggregate(Avg('rating'))
         return context

@@ -17,7 +17,7 @@ class SubCategory(models.Model):
     slug = models.SlugField(max_length=24, unique=True, editable = False)
 
     def __str__(self):
-        return f'{self.name} / {self.category}'
+        return f'{self.category} / {self.name}'
 #-------------------------------------------------------------------------------
 
 class Product(models.Model):
@@ -34,4 +34,4 @@ class Product(models.Model):
                               upload_to='product_images/', blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name} / {self.subcategory}'
+        return f'{self.subcategory} / {self.name}'

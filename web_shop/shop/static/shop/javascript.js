@@ -11,6 +11,7 @@ function reviews() {
   }
 }
 
+
 function writeReview() {
   var x = document.getElementById("write_review_div");
   var y = document.getElementById("reviews_div");
@@ -24,6 +25,22 @@ function writeReview() {
   }
 }
 
+
 function show_alert() {
   $("#alert_container").delay(3000).fadeOut(2000);
+}
+
+
+function star_rating(avg_num) {
+  var x = document.getElementById("filled_stars1");
+  //var x = document.getElementById(string);
+  if(avg_num <= 0) {
+    x.style.width = '0%'
+  }
+  else {
+    avg_num = (avg_num/5)*100;
+    avg_num = avg_num.toString();
+    avg_num = avg_num.concat('%');
+    x.style.width = avg_num
+  }
 }

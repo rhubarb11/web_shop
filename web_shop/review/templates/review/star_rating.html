@@ -1,0 +1,24 @@
+
+<div class="stars-rating">
+
+  <div class="stars-score" id="filled_stars1">
+    <i class="fa fa-star" style="color:yellow;"></i>
+    <i class="fa fa-star" style="color:yellow;"></i>
+    <i class="fa fa-star" style="color:yellow;"></i>
+    <i class="fa fa-star" style="color:yellow;"></i>
+    <i class="fa fa-star" style="color:yellow;"></i>
+  </div>
+
+  <div class="stars-scale" style="">
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+  </div>
+
+</div>
+
+{% if avg_rating.rating__avg != None %}
+    <script>star_rating({{avg_rating.rating__avg}});</script>
+{% endif %}
