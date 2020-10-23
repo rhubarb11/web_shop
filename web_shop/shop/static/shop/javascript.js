@@ -10,7 +10,7 @@ function reviews() {
     x.style.display = "none";
   }
 }
-
+//------------------------------------------------------------------------------
 
 function writeReview() {
   var x = document.getElementById("write_review_div");
@@ -24,12 +24,12 @@ function writeReview() {
     x.style.display = "none";
   }
 }
-
+//------------------------------------------------------------------------------
 
 function show_alert() {
   $("#alert_container").delay(3000).fadeOut(2000);
 }
-
+//------------------------------------------------------------------------------
 
 function star_rating(avg_num) {
   var x = document.getElementById("filled_stars1");

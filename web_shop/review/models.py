@@ -16,4 +16,4 @@ class CustomerReview(models.Model):
     date_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f'{self.product} - {self.user}'
+        return f'review - {self.product} - {self.user}'

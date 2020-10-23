@@ -27,6 +27,12 @@
   width: 100%;
 }
 
+#cart_div:hover {
+  cursor:pointer;
+  background-color: #fafaf5;
+}
+
+
 .bottom-div {
   position: absolute;
   bottom: 0;

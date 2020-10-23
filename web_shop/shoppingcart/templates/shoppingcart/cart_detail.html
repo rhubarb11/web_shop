@@ -1,5 +1,9 @@
 {% extends "shop/base.html" %}
 
+{% block navbar %}
+  {% include "users/navbar_top_user.html" %}
+{% endblock %}
+
 {% block content %}
 
 <div class="container col-md-7">
@@ -9,14 +13,13 @@
     <div class="card-header bg-dark text-light">
       <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
       Shipping cart
-      <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
       <div class="clearfix"></div>
     </div>
 
     <div class="card-body border-bottom border-secondary">
 
       {% for key,product in request.session.cart.items %}
-      <div class="row">
+      <div id="cart_div" class="row" onclick="location.href='{% url 'shop_slug_product' product.product_id %}'">
 
         <div class="col-12 col-sm-12 col-md-2 text-center">
           <img class="img-responsive" src="{{ product.image }}" alt="prewiew" width="120" height="80">
@@ -67,9 +70,9 @@
 
     <div class="card-footer">
       <div class="pull-right" style="margin: 10px">
-        <a href="" class="btn btn-success pull-right">Checkout</a>
+        <a href="{% url 'order_shipping_details' %}" class="btn btn-success pull-right">Checkout</a>
         <div class="pull-right mr-3">
-          Total price: <b>{{ cart_total_amount }}</b>
+          Total price: <b>€{{ cart_total_amount }}</b>
         </div>
       </div>
     </div>

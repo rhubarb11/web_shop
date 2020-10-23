@@ -8,6 +8,7 @@ urlpatterns = [
     path('cat/<str:slug>/', SubCategoryListView.as_view(), name='shop_sub_category'),
     path('product/<str:slug>/', ProductDetailView.as_view(), name='shop_product_detail'),
     path('search/', SearchListView.as_view(), name='shop_search'),
+    path('slugify/<int:pk>/', views.ProductSlugView, name='shop_slug_product'),
 
 ]
 

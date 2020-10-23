@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+
+{% block navbar %}
+  {% include "users/navbar_top_user.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-12">
+    <h4 class="ml-4 mt-4">Your cart is empty</h4>
+    <h5><a class="ml-4" href="{% url 'shop_index' %}">Continue Shopping</a></h5>
+</div>
+
+{% endblock %}

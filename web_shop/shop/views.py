@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from . models import Category, SubCategory, Product
@@ -11,6 +11,12 @@ def index(request):
     products = Product.objects.all()
     context = {'products': products }
     return render(request, 'shop/index.html', context)
+#-------------------------------------------------------------------------------
+
+def ProductSlugView(request, pk):
+    product = product = get_object_or_404(Product, pk=pk)
+    return redirect("shop_product_detail", slug = product.slug)
+
 #-------------------------------------------------------------------------------
 
 class SubCategoryListView(ListView):

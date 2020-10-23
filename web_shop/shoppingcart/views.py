@@ -5,6 +5,10 @@ from django.shortcuts import get_object_or_404
 
 
 def cart_detail(request):
+    cart = Cart(request)
+    if not cart.cart:
+        return render(request, 'shoppingcart/cart_empty.html')
+
     return render(request, 'shoppingcart/cart_detail.html')
 #-------------------------------------------------------------------------------
 
@@ -12,7 +16,7 @@ def cart_add_item(request, id):
     product=get_object_or_404(Product, pk=id)
     cart = Cart(request)
     cart.add(product=product)
-    return redirect("shop_index")
+    return redirect("shop_product_detail", slug = product.slug)
 #-------------------------------------------------------------------------------
 
 def cart_clear(request):
@@ -22,7 +26,7 @@ def cart_clear(request):
 #-------------------------------------------------------------------------------
 
 def cart_clear_item(request, id):
-    product=get_object_or_404(Product, pk=id)
+    product = get_object_or_404(Product, pk=id)
     cart = Cart(request)
     cart.remove(product)
     return redirect("cart_detail")
