@@ -1,17 +1,29 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, get_user_model, AuthenticationForm, UsernameField
 from . models import UserDetails
+from django.core.validators import RegexValidator
 
+
+
+class CustomAuthForm(AuthenticationForm):
+      username = UsernameField(
+        label='Email',
+        widget=forms.TextInput(attrs={'autofocus': True})
+    )
+#-------------------------------------------------------------------------------
 
 class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
+    chars = RegexValidator(r'^[a-öA-Ö]*$', 'Only characters please')
+    first_name = forms.CharField(max_length=30, validators=[chars])
+    last_name = forms.CharField(max_length=30, validators=[chars])
     email = forms.EmailField(max_length=50)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = ('email', 'first_name', 'last_name', 'password1', 'password2', )
+
 #-------------------------------------------------------------------------------
 
 class EmailChangeForm(forms.ModelForm):

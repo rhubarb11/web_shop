@@ -8,6 +8,7 @@ from django.utils.text import slugify
 def create_slugfield_product(sender, instance, *args, **kwargs):
     slug = slugify(instance.name)
     instance.slug = slug
+    instance.price = round(instance.price, 2)
 
 
 @receiver(pre_save, sender=SubCategory)

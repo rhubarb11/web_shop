@@ -1,5 +1,4 @@
-from django.db.models.signals import post_save
-from django.contrib.auth.signals import user_logged_out
+from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from . models import UserDetails
@@ -17,6 +16,7 @@ def save_userdetails(sender, instance, **kwargs):
     instance.userdetails.save()
 
 
-@receiver(user_logged_out)
-def on_user_logged_out(sender, request, user, **kwargs):
-    messages.success(request, 'You have logged out')
+@receiver(pre_save, sender=User)
+def username_equals_email(sender, instance, *args, **kwargs):
+    instance.username = instance.email
+    

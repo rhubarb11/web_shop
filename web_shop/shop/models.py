@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Category(models.Model):
-    name =  models.CharField(max_length=20)
+    name =  models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return self.name
@@ -13,7 +13,7 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name =  models.CharField(max_length=24)
+    name =  models.CharField(max_length=24, unique=True)
     slug = models.SlugField(max_length=24, unique=True, editable = False)
 
     def __str__(self):
@@ -22,13 +22,13 @@ class SubCategory(models.Model):
 
 class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True)
-    name =  models.CharField(max_length=40)
+    name =  models.CharField(max_length=40, unique=True)
     slug = models.SlugField(max_length=40, unique=True, editable = False, null=True)
     date_created = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(blank=True, null=True)
     description = models.TextField(max_length=200)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
-    old_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+    special_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     quantity = models.IntegerField(null=True)
     image = ResizedImageField(default='product_images/default.jpeg',size=[640, 480], quality=90,
                               upload_to='product_images/', blank=True, null=True)

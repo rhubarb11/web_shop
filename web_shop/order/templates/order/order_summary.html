@@ -82,7 +82,7 @@
     </div>
 
     <div class="col-2">
-      €{{product.price|multiply:product.quantity}}
+      €{{product.price|multiply:product.quantity|floatformat:2 }}
     </div>
 
   </div>
@@ -93,11 +93,13 @@
       <div class="row">
 
         <div class="col-12 text-right mt-4">
-            <h6><strong>Total price: €{{cart_total_amount}}</strong></h6>
+            <h6><strong>Total price: €{{cart_total_amount|floatformat:2}}</strong></h6>
         </div>
 
       </div>
   </div>
+
+
 
 </div>
 
@@ -152,9 +154,14 @@
             <div class="panel-footer">
               <div class="row">
                 <div class="col-xs-12">
-                  <button class="btn btn-warning btn-lg btn-block" type="submit">Process payment</button>
+                  <button class="btn btn-warning btn-lg btn-block" type="submit"
+                          onclick="return confirm('Are you sure?')">
+                    Process payment
+                  </button>
                   <button class="btn btn-danger btn-lg btn-block" type="button"
-                          onclick="location.href='{% url 'shop_index' %}'">Dismiss</button>
+                          onclick="location.href='{% url 'shop_index' %}'">
+                    Dismiss
+                  </button>
                 </div>
               </div>
             </div>

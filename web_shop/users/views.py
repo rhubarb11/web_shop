@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from . forms import UserRegisterForm, EmailChangeForm, DetailsChangeForm
+from . forms import UserRegisterForm, EmailChangeForm, DetailsChangeForm, CustomAuthForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import reverse_lazy
 
 

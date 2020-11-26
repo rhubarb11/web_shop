@@ -2,6 +2,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from users import views as user_views
 from . views import CustomPasswordChangeView
+from . forms import CustomAuthForm
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
@@ -9,9 +10,6 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
      # Built in authentication views - stay as default
-     path('login/', auth_views.LoginView.as_view(
-          template_name='users/login.html', redirect_authenticated_user=True), name='login'),
-
      path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
      path('password-reset/', auth_views.PasswordResetView.as_view(
@@ -26,6 +24,10 @@ urlpatterns = [
      path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
           template_name='users/password_reset_complete.html'), name='password_reset_complete'),
      #--------------------------------------------------------------------------------------------
+
+     path('login/', auth_views.LoginView.as_view(
+           template_name='users/login.html', authentication_form=CustomAuthForm,
+           redirect_authenticated_user=True), name='login'),
 
      path('password-change/', CustomPasswordChangeView.as_view(), name='password_change'),
 

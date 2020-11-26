@@ -19,9 +19,10 @@
     <div class="card-body border-bottom border-secondary">
 
       {% for key,product in request.session.cart.items %}
-      <div id="cart_div" class="row" onclick="location.href='{% url 'shop_slug_product' product.product_id %}'">
+      <div id="cart_div" class="row">
 
-        <div class="col-12 col-sm-12 col-md-2 text-center">
+        <div id="cart_image_div" class="col-12 col-sm-12 col-md-2 text-center"  
+             onclick="location.href='{% url 'shop_slug_product' product.product_id %}'">
           <img class="img-responsive" src="{{ product.image }}" alt="prewiew" width="120" height="80">
         </div>
 
@@ -32,7 +33,7 @@
         <div class="col-12 col-sm-12 text-sm-center col-md-5 text-md-right row">
 
           <div class="col-3 col-sm-3 col-md-4 text-md-left" style="padding-top: 5px;">
-            <h6><strong>{{ product.price }}<span class="text-muted">€</span></strong></h6>
+            <h6><strong>{{ product.price|floatformat:2 }}<span class="text-muted">€</span></strong></h6>
           </div>
 
           <div class="col-6 col-sm-6 col-md-6">
@@ -72,7 +73,7 @@
       <div class="pull-right" style="margin: 10px">
         <a href="{% url 'order_shipping_details' %}" class="btn btn-success pull-right">Checkout</a>
         <div class="pull-right mr-3">
-          Total price: <b>€{{ cart_total_amount }}</b>
+          Total price: <b>€{{ cart_total_amount|floatformat:2 }}</b>
         </div>
       </div>
     </div>

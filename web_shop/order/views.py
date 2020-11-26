@@ -4,10 +4,14 @@ from . models import Order
 from . forms import OrderShippingDetailForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils import timezone
 
 
 @login_required
 def orderShippingDetailsView(request):
+    cart_items = request.session['cart']
+    if not cart_items:
+        return redirect("cart_detail")
 
     if request.method == 'POST':
         form = OrderShippingDetailForm(request.POST)
@@ -27,13 +31,26 @@ def orderShippingDetailsView(request):
 
 @login_required
 def orderSummaryView(request):
-    """form = OrderShippingDetailForm(request.POST)
-    context = {'form': form}"""
+    cart_items = request.session['cart']
+    if not cart_items:
+        return redirect("cart_detail")
+
     return render(request, 'order/order_summary.html')
 
 
 @login_required
 def payView(request):
-    """form = OrderShippingDetailForm(request.POST)
-    context = {'form': form}"""
-    return render(request, 'order/order_summary.html')
+    if request.method == 'POST':
+        order = Order()
+        order.user = request.user
+        order.date_created = timezone.now()
+        order.phone = request.session['phone']
+        order.address = request.session['address']
+        order.city = request.session['city']
+        order.zip_code = request.session['zip_code']
+        order.country = request.session['country']
+        order.save()
+        return redirect("cart_detail")
+
+    else:
+        return redirect("cart_detail")
